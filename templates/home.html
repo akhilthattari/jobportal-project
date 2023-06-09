@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Viga&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+    <title>Job Portal</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  </head>
+  <body>
+
+    <header>
+      <div class="left-side">
+        <a href="#"> <img src="{% static 'img/logo.jpg' %}" alt=""> </a>
+      </div>
+      <div class="right-side">
+        <!-- <div class="nav-link-wrapper"> <a href="{% url 'home' %}">Home</a> </div> -->
+        <div class="nav-link-wrapper"> <a href="{% url 'candidate_login' %}">Candidate Login</a> </div>
+        <div class="nav-link-wrapper"> <a href="{% url 'company_login' %}">Company Login</a> </div>
+        <div class="nav-link-wrapper"> <a href="{% url 'admin_login' %}">Admin</a> </div>
+      </div>
+    </header>
+
+    <div class="container">
+
+      <div class="left-side">
+        <h1>Find your dream  <br>
+          <span class = "green"> Job </span>with us
+        </h1>
+        <p>"Browse thousands of opportunities from top employers and start your career journey today!" <br>
+            "Connecting talent with opportunity: Your next job is just a click away."
+        </p>
+        <a href="{% url 'about_us' %}"> About Us</a>
+      </div>
+      <div class="right-side">
+        <img src="{% static 'img/apps.png' %}" alt="" class = "starbucks">
+        <div class="box">
+          <a href="#"> <img class = "facebook" src="{% static 'img/facebook.png' %}" alt=""></a>
+          <a href="#"> <img src="{% static 'img/instagram.png' %}" alt=""></a>
+          <a href="#"> <img src="{% static 'img/twitter.png' %}" alt=""></a>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="thumb">
+      <a href = "#bottom"><img id = "bottom" src="{% static 'img/thumb1.png' %}" onclick="imgSlider('img/img1.png');"> </a>
+      <a href="#bottom"><img src="{% static 'img/thumb2.png' %}" onclick="imgSlider('img/img2.png');"> </a>
+      <a href="#bottom"><img src="{% static 'img/thumb3.png' %}" onclick="imgSlider('img/img3.png');"> </a>
+    </div> -->
+
+    <script src = "{% static 'js/script.js' %}">
+    </script>
+  </body>
+</html>

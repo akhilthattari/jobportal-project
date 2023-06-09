@@ -1,0 +1,50 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Viga&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+    <title>Job Post</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  </head>
+  <body>
+
+    <header>
+      <div class="left-side">
+        <a href="#"> <img src="{% static 'img/logo.jpg' %}" alt=""> </a>
+      </div>
+      <div class="right-side">
+        <div class="nav-link-wrapper"> <a href="{% url 'company_home' %}">Home</a> </div>
+        <div class="nav-link-wrapper"> <a href="{% url 'job_post' %}">Post a Job</a> </div>
+        <div class="nav-link-wrapper"><a href="{% url 'all_candidate' %}">Candidates</a> </div>
+      </div>
+    </header><hr><hr>  <br>
+
+    <form method="post" style="font-family: Arial, sans-serif;">
+        {% csrf_token %}
+        <label style="font-weight: bold;">Company Name</label> <input type="text" name="company_name" style="margin-left: 10px;"><br>
+        <label style="font-weight: bold;">Job Title</label> <input type="text" name="job_title" style="margin-left: 30px;"><br>
+        <label style="font-weight: bold;">Job Description</label> <input type="text" name="job_description" style="margin-left: 10px;"><br>
+        <label style="font-weight: bold;">Industry</label> <input type="text" name="industry" style="margin-left: 50px;"><br>
+        <label style="font-weight: bold;">Location</label> <input type="text" name="location" style="margin-left: 44px;"><br>
+        <label style="font-weight: bold;">Position</label> <input type="text" name="salary" style="margin-left: 50px;"><br>
+        <label style="font-weight: bold;">Salary</label> <input type="text" name="salary" style="margin-left: 72px;"><br>
+        <label style="font-weight: bold;">Education Required</label> <input type="text" name="education_requirment" style="margin-left: 10px;"><br>
+        <label style="font-weight: bold;">Experience Required</label> <input type="text" name="experience_requirement" style="margin-left: 10px;"><br>
+        <label style="font-weight: bold;">Skill Required</label> <input type="text" name="skills_required" style="margin-left: 50px;"><br>
+        <input type="submit" value="Save" style="margin-top: 10px; padding: 5px 10px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+</form>
+
+
+
+<script src = "{% static 'js/script.js' %}">
+</script>
+</body>
+</html>

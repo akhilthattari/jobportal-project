@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Viga&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+    <title>Profile Edit</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  </head>
+  <body>
+
+    <header>
+      <div class="left-side">
+        <a href="#"> <img src="{% static 'img/logo.jpg' %}" alt=""> </a>
+      </div>
+      <div class="right-side">
+        <div class="nav-link-wrapper"> <a href="{% url 'candidate_home' %}">Profile</a> </div>
+        
+        {% if request.user.is_authenticated %}  <div class="nav-link-wrapper"> <a href="{% url 'logout_view' %}">Logout</a> </div>
+        {% endif %}
+
+      </div>
+    </header>
+ 
+
+    <div class="container">
+
+      <div class="left-side">
+        <h2>"Don't miss out on your perfect  <br>
+          <span class = "green"> Job </span>Sign in and apply today."
+        </h2> <br>
+        
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+<!-- 
+  <label>Qualification</label> <br>
+  <select name="qualification">
+    {% for choice in choices %}
+    <option value="{{choice.0}}">{{choice.1}}</option>
+    {% endfor %}
+  </select> <br> -->
+  
+  <style>
+    input[type=text], input[type=number], input[type=email], input[type=password], input[type=file] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+  </style>
+  
+  <label>First Name</label> <br> <input type="text" name="first_name" value="{{data.first_name }}"> <br>
+  <label>Last Name</label> <br> <input type="text" name="last_name" value="{{data.last_name }}">  <br>
+  <label>Username</label> <br> <input type="text" name="username" value="{{data.candidate_address}} "> <br>
+  <label>Phone</label>  <br><input type="number" name="phone" value="{{data.phone }}"> <br>
+  <label>Email</label> <br> <input type="email" name="email" value="{{data.email}}"> <br>
+  <label>Address</label>  <br><input type="text" name="candidate_address" value="{{data.candidate_address}}"> <br>
+ 
+<label>Skills</label>
+<div id="skills-container">
+  <input type="text" name="skills"> <br>
+</div>
+<button type="button" id="add-skill-btn">+</button>
+
+<script>
+  const addSkillButton = document.getElementById('add-skill-btn');
+  const skillsContainer = document.getElementById('skills-container');
+
+  let skillCount = 1;
+
+  addSkillButton.addEventListener('click', function() {
+    const skillInput = document.createElement('input');
+    skillInput.type = 'text';
+    skillInput.name = `skills_${skillCount}`;
+    skillInput.placeholder = 'Skill';
+    skillsContainer.appendChild(skillInput);
+
+    skillCount++;
+  });
+</script>
+ <br>
+  <label>Profile Photo</label>  <br><input type="file" name="profile_photo" accept="image/*" > <br>
+  
+  <input type="submit" value="Update" style="background-color: #4CAF50; color: white; padding: 10px 20px;">
+
+
+</form>
+
+        
+      
+      </div>
+      <div class="right-side">
+        <img src="{% static 'img/apps.png' %}" alt="" class = "starbucks">
+        <div class="box">
+          <a href="#"> <img class = "facebook" src="{% static 'img/facebook.png' %}" alt=""></a>
+          <a href="#"> <img src="{% static 'img/instagram.png' %}" alt=""></a>
+          <a href="#"> <img src="{% static 'img/twitter.png' %}" alt=""></a>
+        </div>
+      </div>
+    </div>
+
+
+    <script src = "{% static 'js/script.js' %}">
+    </script>
+  </body>
+</html>

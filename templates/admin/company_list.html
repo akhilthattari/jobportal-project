@@ -1,0 +1,58 @@
+  
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Viga&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+    <title>Company List</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  </head>
+  <body>
+
+   
+    <header>
+      <div class="left-side">
+        <a href="#"> <img src="{% static 'img/logo.jpg' %}" alt=""> </a>
+      </div>
+      <div class="right-side">
+        <div class="nav-link-wrapper"> <a href="{% url 'admin_home' %}">Home</a> </div>
+        <div class="nav-link-wrapper"> <a href="{% url 'logout_view' %}"> Logout</a> </div>
+        <div class="nav-link-wrapper"> <a href="{% url 'candidates_list' %}">Registered Candidates</a> </div>
+      </div>
+    </header>
+     
+        
+      
+      </div>
+{% for companies in companies %}
+{% if not companies.user.is_active %}
+<div style="border: 1px solid black; padding: 20px; margin-bottom: 20px;">
+    <h2 style="margin-top: 0;">{{companies.company_name}}</h2>
+    <p><strong>Address:</strong> {{companies.company_address}}</p>
+    <p><strong>Phone:</strong> {{companies.phone}}</p>
+    <p><strong>Email:</strong> {{companies.email}}</p>
+    <p><strong>Location:</strong> {{companies.location}}</p>
+    <p><strong>Description:</strong> {{companies.description}}</p>
+    <p><strong>Founder:</strong> {{companies.company_founder}}</p>
+    <p><strong>Country:</strong> {{companies.company_country}}</p>
+    <p><strong>City:</strong> {{companies.company_city}}</p>
+    <p><strong>Pincode:</strong> {{companies.company_pincode}}</p>
+    <p><strong>Website:</strong> <a href="{{companies.website_url}}">{{companies.website_url}}</a></p>
+    <p><strong>Founded On:</strong> {{companies.founded_year}}</p>
+    <a href="{% url 'company_activate' companies.id %}"><button>Activate</button></a>
+  </div>
+
+ <hr> <hr> </h1>
+{% endif %}
+{% endfor %}
+
+
+
+<script src = "{% static 'js/script.js' %}">
+</script>
+</body>
+</html>

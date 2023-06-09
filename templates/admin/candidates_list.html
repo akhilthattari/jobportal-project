@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Viga&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+    <title>Candidate List</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  </head>
+  <body>
+
+   
+    <header>
+      <div class="left-side">
+        <a href="#"> <img src="{% static 'img/logo.jpg' %}" alt=""> </a>
+      </div>
+      <div class="right-side">
+        <div class="nav-link-wrapper"> <a href="{% url 'admin_home' %}">Home</a> </div>
+        
+        <div class="nav-link-wrapper"> <a href="{% url 'logout_view' %}"> Logout</a> </div>
+        
+        
+    <div class="nav-link-wrapper"> <a href="{% url 'company_list' %}">Registered Compnaies</a> </div>
+   
+      </div>
+    </header>
+     
+
+    {% for candidate in candidates %}
+    
+    <div style="border: 1px solid #ddd; padding: 10px; margin-bottom: 10px;">
+      {% if candidate.profile_photo %}
+    <img src="{{ candidate.profile_photo.url }}" height="100" width="100" style="border-radius: 50%; margin-right: 20px;">
+  {% endif %}
+      <h4 style="margin-top: 0; font-size: 1.2em; color: #333;">{{ candidate.username }}</h4>
+      <p style="font-size: 1.1em; color: #666;"><strong>Address:</strong> {{ candidate.candidate_address }}</p>
+      <p style="font-size: 1.1em; color: #666;"><strong>Qualification:</strong> {{ candidate.qualification }}</p>
+      <p style="font-size: 1.1em; color: #666;"><strong>Phone:</strong> {{ candidate.phone }}</p>
+      <p style="font-size: 1.1em; color: #666;"><strong>Email:</strong> {{ candidate.email }}</p>
+    </div>
+  {% endfor %}
+      
+
+    <script src = "{% static 'js/script.js' %}">
+    </script>
+  </body>
+</html>

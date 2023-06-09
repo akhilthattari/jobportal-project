@@ -1,0 +1,149 @@
+    {% load static %}
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+        background-color: white;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        width: 100px;
+        height: auto;
+    }
+
+    .nav-link-wrapper {
+        margin-right: 20px;
+    }
+
+    .nav-link-wrapper a {
+        text-decoration: none;
+        color: #333333;
+        font-weight: bold;
+    }
+
+    .container {
+        padding: 40px;
+    }
+
+    h2 {
+        color: #333333;
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+    p {
+        color: #555555;
+        line-height: 1.5;
+        margin-bottom: 20px;
+    }
+
+    img {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .contact-info {
+        margin-top: 30px;
+        color: #555555;
+    }
+
+    .contact-info p {
+        margin-bottom: 5px;
+    }
+
+    .contact-info p:last-child {
+        margin-bottom: 0;
+    }
+
+    .ceo-section {
+        margin-top: 40px;
+    }
+
+    .ceo-info {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .ceo-image {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 20px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .ceo-details {
+        color: #555555;
+    }
+
+    .ceo-name {
+        font-size: 24px;
+        margin-bottom: 5px;
+    }
+
+    .ceo-position {
+        font-size: 18px;
+        color: #888888;
+    }
+    </style>
+
+    <header>
+    <div class="left-side">
+        <a href="#"> <img src="{% static 'img/logo.jpg' %}" alt="" class="logo"> </a>
+    </div>
+    <div class="right-side">
+        <div class="nav-link-wrapper"> <a href="{% url 'home' %}">Home</a> </div>
+    </div>
+    </header>
+
+    <div class="container">
+    <h2>About Us</h2>
+    <p>Welcome to JobPortal.com, your one-stop destination for finding your dream job or hiring the perfect candidate. We are dedicated to connecting talented professionals with top-notch employers, making the job search and recruitment process efficient and seamless.</p>
+
+    <p>At JobPortal.com, we understand the challenges job seekers and employers face in the competitive job market. Our mission is to bridge the gap between talent and opportunity by providing a comprehensive platform that caters to the needs of both job seekers and employers.</p>
+
+    <p>Our job portal offers a wide range of services to help job seekers find their ideal job. From a vast database of job listings in various industries and locations to powerful search filters and personalized job recommendations, we strive to make the job search process targeted and effective. Job seekers can also upload their resumes, create profiles, and directly apply to job openings, simplifying the application process.</p>
+
+    <p>For employers, JobPortal.com provides a robust recruitment solution. Our platform allows employers to post job openings, manage applications, and search for qualified candidates. With advanced search and filtering options, employers can quickly find the right talent for their organizations. We also offer additional features such as employer branding, resume database access, and applicant tracking tools to streamline the hiring process.</p>
+
+    <p>Our team is committed to delivering an exceptional user experience, ensuring that job seekers and employers have a seamless and productive experience on our platform. We constantly strive to improve our services, leveraging the latest technologies and industry best practices.</p>
+
+    <p>Join thousands of satisfied job seekers and employers who have found success with JobPortal.com. Start your journey today and discover a world of opportunities!</p>
+
+    <p>If you have any questions, feedback, or inquiries, please don't hesitate to reach out to our support team. We are here to assist you every step of the way.</p>
+
+    <img src="{% static 'img/image1.jpg' %}">
+    <img src="{% static 'img/image2.jpg' %}">
+    
+    <div class="contact-info">
+        <h2>Contact Us</h2>
+        <p>Email: info@jobportal.com</p>
+        <p>Phone: 123-456-7890</p>
+    </div>
+
+    <div class="ceo-section">
+        <h2>CEO</h2>
+        <div class="ceo-info">
+        <img src="{% static 'img/image4.jpg' %}" alt="John Doe, CEO" class="ceo-image">
+        <div class="ceo-details">
+            <h3 class="ceo-name">Melinda</h3>
+            <p class="ceo-position">CEO, JobPortal.com</p>
+            <p>Melinda is a visionary leader with extensive experience in the job industry. With a strong passion for connecting talented professionals with top-notch employers, Melinda has been instrumental in the success of JobPortal.com. Her strategic guidance and commitment to excellence have driven the company to new heights.</p>
+        </div>
+        </div>
+    </div>
+    </div>

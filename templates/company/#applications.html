@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<a href="{% url 'job_details' %}">Home</a> |
+  <a href="{% url 'job_post' %}">Post a Job</a> |
+  
+  <a href="{% url 'all_candidate' %}">Candidates</a> <br>
+  <hr>  
+
+  {% for application in application %}
+{{application.username}}
+{% endfor %}
+
+
+
+<hr>        
+ 
+{% endblock content %}

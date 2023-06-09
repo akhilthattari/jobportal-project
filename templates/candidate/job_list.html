@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  {% load static %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Viga&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+  <title>Job List  </title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+  <header>
+    <div class="left-side">
+      <a href="#"> <img src="{% static 'img/logo.jpg' %}" alt=""> </a>
+    </div>
+    <div class="right-side">
+      <div class="nav-link-wrapper"> <a href="{% url 'candidate_home' %}">Profile</a> </div>
+      
+      {% if request.user.is_authenticated %}  
+        <div class="nav-link-wrapper"> <a href="{% url 'logout_view' %}">Logout</a> </div>
+      {% endif %}
+    </div>
+  </header>
+
+  {% for vacancy in vacancies %}
+    <h1>{{ vacancy.company_name }}</h1>
+    <div style="display: flex;">
+      <h3 style="width: 70px;">Post</h3>
+      <span style="padding-top: 6px;">: {{ vacancy.job_title }}</span>
+    </div> <br>
+   
+    <h3>Description</h3>
+    {{ vacancy.job_description }}<br>
+    
+    <h3>Job Type</h3>
+    {{ vacancy.job_type }}<br>
+    
+    <h3>Industry</h3>
+    {{ vacancy.industry }}<br>
+    
+    <h3>Location</h3>
+    {{ vacancy.location }}<br>
+    
+    <h3>Position</h3>
+    {{ vacancy.position }}<br>
+    
+    <h3>Salary</h3>
+    {{ vacancy.salary }}<br>
+    
+    <h3>Qualification</h3>
+    {{ vacancy.education_requirment }}<br>
+   
+    <h3>Experience</h3>
+    {{ vacancy.experience_requirement }}<br>
+   
+    <h3>Skills</h3>
+    {{ vacancy.skills_required }}<br>
+   
+    Posted on: {{ vacancy.created_date }}<br>
+    Updated on: {{ vacancy.updated_date }}<br>
+    
+    {% if vacancy.applicant_status %}
+      <h3>Applicant Status:</h3>
+      {% if vacancy.applicant_status == 'Selected' %}
+        <p>This applicant has been selected for the job.</p>
+      {% elif vacancy.applicant_status == 'Rejected' %}
+        <p>This applicant has been rejected for the job.</p>
+      {% else %}
+        <p>Applicant status: {{ vacancy.applicant_status }}</p>
+      {% endif %}
+    {% else %}
+      <a href="{% url 'job_apply' vacancy.id %}">Apply</a>
+    {% endif %}
+    
+    <hr><hr>
+  {% endfor %}
+    
+  <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

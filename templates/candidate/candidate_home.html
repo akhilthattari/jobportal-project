@@ -1,0 +1,76 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Viga&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+    <title>Candidate Home</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  </head>
+  <body>
+
+   
+    <header>
+      <div class="left-side">
+        <a href="#"> <img src="{% static 'img/logo.jpg' %}" alt=""> </a>
+      </div>
+      <div class="right-side">
+        
+        <div class="nav-link-wrapper"> <a href="{% url 'candidate_updation' data.id %}">Edit Profile</a> </div>
+        <div class="nav-link-wrapper"> <a href="{% url 'job_list'  %}">Jobs</a> </div>
+        <div class="nav-link-wrapper"> <a href="{% url 'candidate_settings' %}">Settings</a> </div>
+        <div class="nav-link-wrapper"> <a href="{% url 'candidate_delete' data.id %}">Delete Account</a> </div>
+        <div class="nav-link-wrapper"> <a href="{% url 'list_applied' %}">Applied Jobs</a> </div>
+        {% if request.user.is_authenticated %}  <div class="nav-link-wrapper"> <a href="{% url 'logout_view' %}">Logout</a> </div>
+        {% endif %}
+        
+      </div>
+    </header>
+     
+
+    <div class="container">
+
+      <div class="left-side">
+        
+{% if data.profile_photo %}
+<div style="border-radius: 50%;overflow: hidden ;width: 200px;"><img  src="{{ data.profile_photo.url }}" height="200" width="200" ></div>
+{% endif %} <br>
+
+
+<div style="border: 1px solid black; padding: 20px; margin-bottom: 20px;">
+  <h1 style="margin-top: 0;">{{data.first_name }} {{data.last_name }}</h1>
+  <p><strong>Address:</strong> {{data.candidate_address}}</p>
+  <p><strong>Phone:</strong> {{data.phone }}</p>
+  <p><strong>Email:</strong> {{data.email}}</p>
+  <p><strong>Qualification:</strong> {{data.qualification}}</p>
+  <p><strong>Skills:</strong> {{data.skills}}</p>
+</div>
+      
+      </div>
+      <div class="right-side">
+        <img src="{% static 'img/apps.png' %}" alt="" class = "starbucks">
+        <div class="box">
+          <a href="#"> <img class = "facebook" src="{% static 'img/facebook.png' %}" alt=""></a>
+          <a href="#"> <img src="{% static 'img/instagram.png' %}" alt=""></a>
+          <a href="#"> <img src="{% static 'img/twitter.png' %}" alt=""></a>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="thumb">
+      <a href = "#bottom"><img id = "bottom" src="{% static 'img/thumb1.png' %}" onclick="imgSlider('img/img1.png');"> </a>
+      <a href="#bottom"><img src="{% static 'img/thumb2.png' %}" onclick="imgSlider('img/img2.png');"> </a>
+      <a href="#bottom"><img src="{% static 'img/thumb3.png' %}" onclick="imgSlider('img/img3.png');"> </a>
+    </div> -->
+
+    <script src = "{% static 'js/script.js' %}">
+    </script>
+  </body>
+</html>
+
+

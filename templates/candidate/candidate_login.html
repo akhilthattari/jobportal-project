@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Viga&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  </head>
+  <body>
+
+   
+    <header>
+      <div class="left-side">
+        <a href="#"> <img src="{% static 'img/logo.jpg' %}" alt=""> </a>
+      </div>
+      <div class="right-side">
+        <div class="nav-link-wrapper"> <a href="{% url 'home' %}">Home</a> </div>
+        <div class="nav-link-wrapper"> <a href="{% url 'candidate_register' %}">Candidate Register</a> </div>
+        <!-- <div class="nav-link-wrapper"> <a href="">Contact</a> </div> -->
+      </div>
+    </header>
+     
+
+    <div class="container">
+
+      <div class="left-side">
+        <h2>"Welcome back!   <br>
+          Log in to find your dream<span class = "green"> job." </span>
+        </h2>
+        <form method="POST">
+          {% csrf_token %}
+        
+          <input type="text" name="username" placeholder="Enter Your Username" style="padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-top: 10px;
+          margin-bottom: 10px;
+          width: 200px;
+          font-size: 16px;
+        ">
+         <br>
+
+
+
+      <input type="password" name="password" placeholder="Enter Your Password" style="padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 200px;
+  font-size: 16px;
+">
+ <br>
+
+
+ 
+      <input type="submit" value="Login" style="background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 4px;
+    ">
+    
+        
+      </form> 
+        
+        
+      
+      </div>
+      <div class="right-side">
+        <img src="{% static 'img/apps.png' %}" alt="" class = "starbucks">
+        <div class="box">
+          <a href="#"> <img class = "facebook" src="{% static 'img/facebook.png' %}" alt=""></a>
+          <a href="#"> <img src="{% static 'img/instagram.png' %}" alt=""></a>
+          <a href="#"> <img src="{% static 'img/twitter.png' %}" alt=""></a>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="thumb">
+      <a href = "#bottom"><img id = "bottom" src="{% static 'img/thumb1.png' %}" onclick="imgSlider('img/img1.png');"> </a>
+      <a href="#bottom"><img src="{% static 'img/thumb2.png' %}" onclick="imgSlider('img/img2.png');"> </a>
+      <a href="#bottom"><img src="{% static 'img/thumb3.png' %}" onclick="imgSlider('img/img3.png');"> </a>
+    </div> -->
+
+    <script src = "{% static 'js/script.js' %}">
+    </script>
+  </body>
+</html>

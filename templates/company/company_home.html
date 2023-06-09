@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div style="display: flex; align-items: center; justify-content: center; background-color: #f2f2f2; padding: 10px;">
+  <h2 style="font-size: 24px; margin-right: 20px;">{{data.company_name}}</h2>
+  <a href="{% url 'job_details' %}" style="color: #333; text-decoration: none; margin: 0 10px;">Listed Jobs</a>
+  <span style="color: #777; margin: 0 5px;">|</span>
+  <a href="{% url 'job_post' %}" style="color: #333; text-decoration: none; margin: 0 10px;">Post a Job</a>
+  <span style="color: #777; margin: 0 5px;">|</span>
+  <a href="{% url 'company_updation' data.id %}" style="color: #333; text-decoration: none; margin: 0 10px;">Profile Edit</a>
+  <span style="color: #777; margin: 0 5px;">|</span>
+  <a href="{% url 'all_candidate' %}" style="color: #333; text-decoration: none; margin: 0 10px;">Candidates</a>
+</div>
+<hr>
+
+
+
+  {% if data.profile_photo %}
+  <img src="{{ data.profile_photo.url }}" height="100" width="100" style="border-radius: 50%;">
+  {% endif %}
+<div style="background-color: #F5F5F5; padding: 20px;">
+  
+    <div>
+      <h1>{{data.company_name}}</h1>
+      <p>{{data.description}}</p>
+    </div>
+  </div>
+  <hr style="margin-top: 20px; margin-bottom: 20px;">
+  <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+    <div style="flex: 1; margin-right: 20px;">
+      <h3>Address</h3>
+      <p>{{data.company_address}}</p>
+    </div>
+    <div style="flex: 1; margin-right: 20px;">
+      <h3>Phone</h3>
+      <p>{{data.phone}}</p>
+    </div>
+    <div style="flex: 1;">
+      <h3>Email</h3>
+      <p>{{data.email}}</p>
+    </div>
+  </div>
+  <hr style="margin-top: 20px; margin-bottom: 20px;">
+  <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+    <div style="flex: 1; margin-right: 20px;">
+      <h3>Location</h3>
+      <p>{{data.location}}</p>
+    </div>
+    <div style="flex: 1; margin-right: 20px;">
+      <h3>Founded On</h3>
+      <p>{{data.founded_year}}</p>
+    </div>
+    <div style="flex: 1;">
+      <h3>Founder</h3>
+      <p>{{data.company_founder}}</p>
+    </div>
+  </div>
+</div>
+    
+     
+    <hr>
+  
+
+
+
+
+{% endblock content %}

@@ -1,0 +1,47 @@
+{% load static %}
+<style>
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f5f5f5;
+  }
+
+  .navbar .left-side img {
+    height: 40px;
+    width: auto;
+    opacity: 0.7; /* Adjust the opacity value as needed */
+  }
+
+  .navbar .right-side {
+    display: flex;
+  }
+
+  .navbar .right-side .nav-link-wrapper {
+    margin-right: 10px;
+  }
+
+  .navbar .right-side .nav-link-wrapper a {
+    text-decoration: none;
+  }
+</style>
+
+<div class="navbar">
+  <div class="left-side">
+    <a href="#"> <img src="{% static 'img/logo.jpg' %}" alt=""> </a>
+  </div>
+  <div class="right-side">
+    <div class="nav-link-wrapper"> <a href="{% url 'candidate_home' %}">Home</a> </div>
+    <div class="nav-link-wrapper"> <a href="{% url 'job_list' %}">Jobs</a> </div>
+    <div class="nav-link-wrapper"><a href="{% url 'logout_view' %}">Logout</a> </div>
+  </div>
+</div>
+
+{% for list in lists %}
+  <h3 style="color: #333;">{{ list.job.job_title }}</h3>
+  <p style="color: #888;">Status: {{ list.status }}</p>
+  <hr>
+{% empty %}
+  <p style="text-align: center; color: #888; font-style: italic;">No job applications found.</p>
+{% endfor %}
