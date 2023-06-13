@@ -1,6 +1,9 @@
 from django.shortcuts import render,redirect
 from app .models import *
 from django.contrib.auth.decorators import login_required
+from django.core.files.base import ContentFile
+from django.core.files.storage import default_storage
+
 
 
 
@@ -27,12 +30,10 @@ def candidate_home(request):
 
 #CANDIDATE_PROFILE_EDIT
 
-
-def candidate_updation(request,id):
-    
+def candidate_updation(request, id):
     if not request.user.is_authenticated:
         return redirect('candidate_login')
-    
+
     data = CandidateUser.objects.get(id=id)
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -43,7 +44,7 @@ def candidate_updation(request,id):
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
         qualification = request.POST.get('qualification')
-        skills = request.POST.get('skills', '')
+
         data.username = username
         data.phone = phone
         data.profile_photo = profile_photo
@@ -52,14 +53,26 @@ def candidate_updation(request,id):
         data.first_name = first_name
         data.last_name = last_name
         data.qualification = qualification
-        data.skills = skills
-        
         data.save() 
         return redirect('candidate_home')
+    
+    education_choices = [
+        ('High School', 'High School'),
+        ('Higher Secondary', 'Higher Secondary'),
+        ('DIPLOMA','DIPLOMA'),
+        ('Graduation', 'Graduation'),
+        ('Post Graduation', 'Post Graduation'),
+        ('PhD', 'PhD'),
+        ('other', 'other'),
+        
+    ]
+    
     context = {
-        'data':data
+        'data': data,
+        'education_choices': education_choices,
     }
-    return render(request,'candidate/profile_edit.html',context)
+    
+    return render(request, 'candidate/profile_edit.html', context)
 
 
 
@@ -141,7 +154,7 @@ def company_home(request):
 def company_updation(request,id):
     
     if not request.user.is_authenticated:
-        return redirect('compnay_login')
+        return redirect('company_login')
     
     data = CompanyUser.objects.get(id=id)
     if request.method == 'POST':
@@ -177,7 +190,7 @@ def company_updation(request,id):
 def job_post(request):
     
     if not request.user.is_authenticated:
-        return redirect('compnay_login')
+        return redirect('company_login')
     
     company = CompanyUser.objects.get(user=request.user)
     if company.user.is_active == False:
@@ -218,7 +231,7 @@ def job_post(request):
 def job_details(request):
     
     if not request.user.is_authenticated:
-        return redirect('compnay_login')
+        return redirect('company_login')
     
     job = JobAdd.objects.filter(user=request.user)
     context = {
@@ -233,7 +246,7 @@ def job_details(request):
 def  job_delete(request,id):
     
     if not request.user.is_authenticated:
-        return redirect('compnay_login')
+        return redirect('company_login')
     
     delete_job = JobAdd.objects.get(id=id)
     if request.method =='POST':
@@ -252,7 +265,7 @@ def  job_delete(request,id):
 def all_candidate(request):
     
     if not request.user.is_authenticated:
-        return redirect('compnay_login')
+        return redirect('company_login')
     
     candidate_datas = CandidateUser.objects.all()
     context = {
@@ -267,7 +280,7 @@ def all_candidate(request):
 def candidate_list(request,id):
     
     if not request.user.is_authenticated:
-        return redirect('compnay_login')
+        return redirect('company_login')
     
     candidate_data = CandidateUser.objects.get(id=id)
     context = {
@@ -456,3 +469,20 @@ def company_list_activated(request):
 
 def about_us(request):
     return render(request,'admin/about.html')
+
+
+
+
+#Add Skill(Candidate)
+
+def add_skill(request):
+    if request.method == 'POST':
+        skill = request.POST.get("skill")
+        description = request.POST.get("description")
+        
+        Add_skill.objects.create(
+            skill=skill,
+            description=description,
+        )
+        return redirect('candidate_home')
+    return render(request,'candidate/skill.html')

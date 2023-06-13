@@ -47,6 +47,7 @@ class CandidateUser(models.Model):
         ('Graduation', 'Graduation'),
         ('Post Graduation', 'Post Graduation'),
         ('PhD', 'PhD'),
+        ('other', 'other'),
     )
     
     user = models.OneToOneField(CustomUser,on_delete=models.CASCADE)
@@ -118,4 +119,37 @@ class Application(models.Model):
         return f"{self.username} - {self.job.title}"
     
     
+    
+
+class Education(models.Model):
+     user = models.ForeignKey(CandidateUser,on_delete=models.CASCADE)
+     college_name = models.CharField(max_length=100,null=True)
+     year = models.CharField(max_length=100,null=True)
+     subject = models.CharField(max_length=100,null=True)
+     
+     def __str__(self):
+         return self.college_name
+     
+     
+class Add_skill(models.Model):
+    user = models.ForeignKey(CandidateUser,on_delete=models.CASCADE)
+    skill = models.CharField(max_length=100,null=True)
+    description = models.CharField(max_length=100,null=True)
+    
+    def __str__(self):
+        return self.skill
+    
+class Add_experience(models.Model):
+    user = models.ForeignKey(CandidateUser,on_delete=models.CASCADE)
+    company_name = models.CharField(max_length=100,null=True)
+    position = models.CharField(max_length=100,null=True)
+    start_date = models.CharField(max_length=50,null=True)
+    end_date = models.CharField(max_length=50,null=True)
+    
+    def __str__(self):
+        return self.company_name
+    
+    
+    
+
     

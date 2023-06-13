@@ -37,13 +37,13 @@
 
 <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
-<!-- 
   <label>Qualification</label> <br>
   <select name="qualification">
-    {% for choice in choices %}
-    <option value="{{choice.0}}">{{choice.1}}</option>
+    {% for education_choices in education_choices %}
+    <option value="{{ education_choices.0 }}" {% if education_choices.0 == data.qualification %}selected{% endif %}>{{ education_choices.1 }}</option>
     {% endfor %}
-  </select> <br> -->
+  </select> <br>
+  
   
   <style>
     input[type=text], input[type=number], input[type=email], input[type=password], input[type=file] {
@@ -62,6 +62,7 @@
   <label>Phone</label>  <br><input type="number" name="phone" value="{{data.phone }}"> <br>
   <label>Email</label> <br> <input type="email" name="email" value="{{data.email}}"> <br>
   <label>Address</label>  <br><input type="text" name="candidate_address" value="{{data.candidate_address}}"> <br>
+  
  
 <label>Skills</label>
 <div id="skills-container">
@@ -85,8 +86,18 @@
     skillCount++;
   });
 </script>
+
+<input type="file" name="profile_photo" accept="image/*">
+
+ <!-- <br><label>Profile Photo</label> <br>
+ {% if data.profile_photo %}
+     <p>Current file: {{ data.profile_photo.name }}</p>
+     <img src="{{ data.profile_photo.url }}" alt="Profile Photo">
+ {% endif %}
+ <input type="file" name="profile_photo" accept="image/*">
  <br>
-  <label>Profile Photo</label>  <br><input type="file" name="profile_photo" accept="image/*" > <br>
+  -->
+
   
   <input type="submit" value="Update" style="background-color: #4CAF50; color: white; padding: 10px 20px;">
 
