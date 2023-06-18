@@ -1,0 +1,16 @@
+<form method="post" style="font-family: Arial, sans-serif; max-width: 400px; margin: 0 auto;">
+    {% csrf_token %}
+    <label style="font-weight: bold; display: block; margin-bottom: 10px;">Company Name</label>
+    <input type="text" name="company_name" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 10px;">
+    <br>
+    <label style="font-weight: bold; display: block; margin-bottom: 10px;">Position</label>
+    <input type="text" name="position" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 10px;">
+    <br>
+    <label style="font-weight: bold; display: block; margin-bottom: 10px;">Start Date</label>
+    <input type="date" name="start_date" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 10px;">
+    <br>
+    <label style="font-weight: bold; display: block; margin-bottom: 10px;">End Date</label>
+    <input type="date" name="end_date" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 10px;">
+    <br>
+    <input type="submit" value="Submit" style="background-color: #4CAF50; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer;">
+</form>

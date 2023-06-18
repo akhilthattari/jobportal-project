@@ -62,46 +62,22 @@
   <label>Phone</label>  <br><input type="number" name="phone" value="{{data.phone }}"> <br>
   <label>Email</label> <br> <input type="email" name="email" value="{{data.email}}"> <br>
   <label>Address</label>  <br><input type="text" name="candidate_address" value="{{data.candidate_address}}"> <br>
-  
- 
-<label>Skills</label>
-<div id="skills-container">
-  <input type="text" name="skills"> <br>
-</div>
-<button type="button" id="add-skill-btn">+</button>
-
-<script>
-  const addSkillButton = document.getElementById('add-skill-btn');
-  const skillsContainer = document.getElementById('skills-container');
-
-  let skillCount = 1;
-
-  addSkillButton.addEventListener('click', function() {
-    const skillInput = document.createElement('input');
-    skillInput.type = 'text';
-    skillInput.name = `skills_${skillCount}`;
-    skillInput.placeholder = 'Skill';
-    skillsContainer.appendChild(skillInput);
-
-    skillCount++;
-  });
-</script>
-
-<input type="file" name="profile_photo" accept="image/*">
-
- <!-- <br><label>Profile Photo</label> <br>
- {% if data.profile_photo %}
-     <p>Current file: {{ data.profile_photo.name }}</p>
-     <img src="{{ data.profile_photo.url }}" alt="Profile Photo">
- {% endif %}
- <input type="file" name="profile_photo" accept="image/*">
- <br>
+<!--   
+  <label for="id_skill">Skill:</label>
+  <input type="text" id="id_skill" name="skill" required> <br>
+  <label for="id_description">Description:</label>
+  <textarea id="id_description" name="description" required></textarea>
   -->
 
-  
+<input type="file" name="profile_photo" accept="image/*"> <br>
+<p><a href="{% url 'add_skill' %}">Add Skill</a>
+<a href="{% url 'education' %}">Add Education</a>
+<a href="{% url 'work_experience' %}">Add Work Experience</a></p>
+<input type="text" value="Current file: {{ data.profile_photo.name }}">
+
   <input type="submit" value="Update" style="background-color: #4CAF50; color: white; padding: 10px 20px;">
 
-
+  
 </form>
 
         

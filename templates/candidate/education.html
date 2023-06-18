@@ -1,0 +1,13 @@
+<form method="post">
+    {% csrf_token %}
+    <label style="font-weight: bold;">School/College</label>
+    <input type="text" name="college_name" style="border: 1px solid #ccc; padding: 5px;"><br>
+
+    <label style="font-weight: bold;">Year of Pass</label>
+    <input type="number" name="year" style="border: 1px solid #ccc; padding: 5px;"><br>
+
+    <label style="font-weight: bold;">Subject</label>
+    <input type="text" name="subject" style="border: 1px solid #ccc; padding: 5px;">
+
+    <input type="submit" name="Submit" style="background-color: #4CAF50; color: white; border: none; padding: 10px 20px; margin-top: 10px;">
+</form>

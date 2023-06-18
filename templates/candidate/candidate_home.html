@@ -49,7 +49,46 @@
   <p><strong>Phone:</strong> {{data.phone }}</p>
   <p><strong>Email:</strong> {{data.email}}</p>
   <p><strong>Qualification:</strong> {{data.qualification}}</p>
-  <p><strong>Skills:</strong> {{data.skills}}</p>
+
+  <p><strong>Skills:</strong></p>
+  <ul>
+    {% for skill in skills %}
+      <li>
+        <strong>{{ skill.skill }}</strong><br>
+        {{ skill.description }}
+      </li>
+    {% empty %}
+      <li>No skills added yet.</li>
+    {% endfor %}
+  </ul>
+  
+
+<p><strong>Educations:</strong></p>
+<ul>
+  {% for education in education %}
+  <li>
+    <strong>{{ education.college_name }}</strong><br>
+    <span>Year of Pass:</span> {{ education.year }}<br>
+    <span>Subject:</span> {{ education.subject }}
+  </li>
+  {% empty %}
+  <li>No Education added yet.</li>
+  {% endfor %}
+</ul>
+
+<p><strong>Experience:</strong></p>
+<ul>
+  {% for experience in experience %}
+  <li>
+    <strong>{{ experience.company_name }}</strong><br>
+    <span>Position:</span> {{ experience.position }}<br>
+    <span>Start Date:</span> {{ experience.start_date }} <br>
+    <span>End Date:</span> {{ experience.end_date }}
+  </li>
+  {% empty %}
+  <li>Fresher.</li>
+  {% endfor %}
+
 </div>
       
       </div>
@@ -62,12 +101,7 @@
         </div>
       </div>
     </div>
-    <!-- <div class="thumb">
-      <a href = "#bottom"><img id = "bottom" src="{% static 'img/thumb1.png' %}" onclick="imgSlider('img/img1.png');"> </a>
-      <a href="#bottom"><img src="{% static 'img/thumb2.png' %}" onclick="imgSlider('img/img2.png');"> </a>
-      <a href="#bottom"><img src="{% static 'img/thumb3.png' %}" onclick="imgSlider('img/img3.png');"> </a>
-    </div> -->
-
+    
     <script src = "{% static 'js/script.js' %}">
     </script>
   </body>

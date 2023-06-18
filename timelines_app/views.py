@@ -19,9 +19,14 @@ def candidate_home(request):
     if not request.user.is_authenticated:
         return redirect('candidate_login')
     data = CandidateUser.objects.get(user=request.user)
-    
+    skill = Add_skill.objects.filter(user=request.user)
+    education = Education.objects.filter(user=request.user)
+    experience = Add_experience.objects.filter(user=request.user)
     context = {
-        'data': data
+        'data': data,
+        'skills':skill,
+        'education':education,
+        'experience':experience,
     }
     return render(request,'candidate/candidate_home.html',context)
 
@@ -44,10 +49,13 @@ def candidate_updation(request, id):
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
         qualification = request.POST.get('qualification')
-
+        
+        if profile_photo:
+            data.profile_photo = profile_photo
+            # profile_photo.profile_photo=profile_photo
+        
         data.username = username
         data.phone = phone
-        data.profile_photo = profile_photo
         data.email = email
         data.candidate_address = candidate_address
         data.first_name = first_name
@@ -75,6 +83,68 @@ def candidate_updation(request, id):
     return render(request, 'candidate/profile_edit.html', context)
 
 
+
+
+#Add Skill(Candidate)
+
+def add_skill(request):
+    if not request.user.is_authenticated:
+        return redirect('candidate_login')
+    
+    if request.method == 'POST':
+        skill_name = request.POST.get("skill")
+        description = request.POST.get("description")
+        
+        Add_skill.objects.create(
+            user = request.user,
+            skill=skill_name,
+            description=description,
+        )
+        return redirect('candidate_home')
+    return render(request,'candidate/skill.html')
+
+
+#Add Education (Candidate)
+
+def education(request):
+    if not request.user.is_authenticated:
+        return redirect('candidate_login')
+    
+    if request.method == 'POST':
+        college_name = request.POST.get("college_name")
+        year = request.POST.get('year')
+        subject = request.POST.get('subject')
+        
+        Education.objects.create(
+            user = request.user,
+            college_name = college_name,
+            year = year,
+            subject = subject,
+        )
+        return redirect('candidate_home')
+    return render(request,'candidate/education.html')
+
+#Add Work Experience(Candidate)
+
+def work_experience(request):
+    if not request.user.is_authenticated:
+        return redirect('candidate_login')
+    
+    if request.method == 'POST':
+        company_name = request.POST.get('company_name')
+        position = request.POST.get('position')
+        start_date = request.POST.get('start_date')
+        end_date = request.POST.get('end_date')
+        
+        Add_experience.objects.create(
+            user = request.user,
+            company_name = company_name,
+            position = position,
+            start_date = start_date,
+            end_date = end_date,
+        )
+        return redirect('candidate_home')
+    return render(request,'candidate/experience.html')
 
 
 
@@ -167,12 +237,13 @@ def company_updation(request,id):
         location = request.POST.get('location')
         description = request.POST.get('description')
         
+        if profile_photo:
+            data.profile_photo=profile_photo
         data.username = username
         data.company_name = company_name
         data.company_address = company_address
         data.phone = phone
         data.email = email
-        data.profile_photo = profile_photo
         data.location = location
         data.description = description
         data.save()
@@ -471,18 +542,3 @@ def about_us(request):
     return render(request,'admin/about.html')
 
 
-
-
-#Add Skill(Candidate)
-
-def add_skill(request):
-    if request.method == 'POST':
-        skill = request.POST.get("skill")
-        description = request.POST.get("description")
-        
-        Add_skill.objects.create(
-            skill=skill,
-            description=description,
-        )
-        return redirect('candidate_home')
-    return render(request,'candidate/skill.html')

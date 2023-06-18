@@ -1,0 +1,31 @@
+<form method="post">
+  {% csrf_token %}
+  <label>Skills</label>
+<div id="skills-container">
+  <input type="text" name="skill"> <button type="button" id="add-skill-btn">+</button><br>
+</div>
+
+<script>
+  const addSkillButton = document.getElementById('add-skill-btn');
+  const skillsContainer = document.getElementById('skills-container');
+
+  let skillCount = 1;
+
+  addSkillButton.addEventListener('click', function() {
+    const skillInput = document.createElement('input');
+    skillInput.type = 'text';
+    skillInput.name = `skills_${skillCount}`;
+    skillInput.placeholder = 'Skill';
+    skillsContainer.appendChild(skillInput);
+
+    skillCount++;
+  });
+</script>
+
+<br>
+
+<label>Description</label> <br>
+<input type="text" name="description"> <br>
+<input type="submit" value="update">
+
+</form>

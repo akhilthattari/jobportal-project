@@ -122,7 +122,7 @@ class Application(models.Model):
     
 
 class Education(models.Model):
-     user = models.ForeignKey(CandidateUser,on_delete=models.CASCADE)
+     user = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
      college_name = models.CharField(max_length=100,null=True)
      year = models.CharField(max_length=100,null=True)
      subject = models.CharField(max_length=100,null=True)
@@ -132,7 +132,7 @@ class Education(models.Model):
      
      
 class Add_skill(models.Model):
-    user = models.ForeignKey(CandidateUser,on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     skill = models.CharField(max_length=100,null=True)
     description = models.CharField(max_length=100,null=True)
     
@@ -140,7 +140,7 @@ class Add_skill(models.Model):
         return self.skill
     
 class Add_experience(models.Model):
-    user = models.ForeignKey(CandidateUser,on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
     company_name = models.CharField(max_length=100,null=True)
     position = models.CharField(max_length=100,null=True)
     start_date = models.CharField(max_length=50,null=True)

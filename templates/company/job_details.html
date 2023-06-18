@@ -1,15 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
+<head>
     {% load static %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,50 +12,124 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
     <title>Job Details</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-  </head>
-  <body>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f2f2f2;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
 
-    <header>
-      <div class="left-side">
-        <a href="#"> <img src="{% static 'img/logo.jpg' %}" alt=""> </a>
-      </div>
-      <div class="right-side">
-        <div class="nav-link-wrapper"> <a href="{% url 'company_home' %}">Home</a> </div>
-        <div class="nav-link-wrapper"> <a href="{% url 'job_post' %}">Post a Job</a> </div>
-        <div class="nav-link-wrapper"><a href="{% url 'all_candidate' %}">Candidates</a> </div>
-        
-      </div>
-    </header>
+        header {
+            background-color: #ffffff;
+            padding: 20px;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
+        .left-side img {
+            height: 50px;
+        }
+
+        .right-side {
+            display: flex;
+        }
+
+        .nav-link-wrapper {
+            margin-right: 20px;
+        }
+
+        .nav-link-wrapper a {
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .nav-link-wrapper a:hover {
+            color: #555;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        h3 {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        p {
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        a.button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            border: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease-in-out;
+            font-weight: bold;
+        }
+
+        a.button:hover {
+            background-color: #218838;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="left-side">
+        <a href="#"><img src="{% static 'img/logo.jpg' %}" alt=""></a>
+    </div>
+    <div class="right-side">
+        <div class="nav-link-wrapper"><a href="{% url 'company_home' %}">Home</a></div>
+        <div class="nav-link-wrapper"><a href="{% url 'job_post' %}">Post a Job</a></div>
+        <div class="nav-link-wrapper"><a href="{% url 'all_candidate' %}">Candidates</a></div>
+    </div>
+</header>
 <hr>
 
-
 {% for job in job %}
-
-
-<a href="{% url 'applicants_list' job.id %}" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 5px; border: none; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); transition: background-color 0.3s ease-in-out; font-weight: bold;">
-  Applications</a> 
- <h2>{{job.job_title}}</h2> <br>  
-<h3>Job Description:</h3>{{job.job_description}}
-<h3>Industry:</h3>{{job.industry}} <br> <br>
-<h3>Location:</h3>{{job.location}} <br> <br>
-<h3>Position:</h3>{{job.position}} <br> <br>
-<h3>Salary:</h3>{{job.salary}} <br> <br>
-<h3>Qualification:</h3>{{job.education_requirment}}  <br> <br>
-{{job.experience_requirement}} <br> <br>
-<h3>Skills:</h3>{{job.skills_required}} <br> <br>
-<a href="{% url 'job_delete' job.id %}">Delete</a>
-<hr> <hr>
-
-
+<a href="{% url 'applicants_list' job.id %}" class="button">Applications</a>
+<h2>{{ job.job_title }}</h2>
+<h3>Job Description:</h3>
+<p>{{ job.job_description }}</p>
+<h3>Industry:</h3>
+<p>{{ job.industry }}</p>
+<h3>Location:</h3>
+<p>{{ job.location }}</p>
+<h3>Position:</h3>
+<p>{{ job.position }}</p>
+<h3>Salary:</h3>
+<p>{{ job.salary }}</p>
+<h3>Qualification:</h3>
+<p>{{ job.education_requirement }}</p>
+<p>{{ job.experience_requirement }}</p>
+<h3>Skills:</h3>
+<p>{{ job.skills_required }}</p>
+<a href="{% url 'job_delete' job.id %}" class="button">Delete</a>
+<hr>
+<hr>
 {% endfor %}
 
-{% endblock content %}
-
-
-
-
-<script src = "{% static 'js/script.js' %}">
-</script>
+<script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>
+{% endblock content %}

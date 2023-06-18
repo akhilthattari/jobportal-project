@@ -13,7 +13,9 @@ urlpatterns = [
       path('job_list/',job_list,name='job_list'),
       path('job_apply/<int:id>/',job_apply,name='job_apply'),
       path('applied_list/list_view/',applied_list,name="list_applied"),
-      
+      path('add_skill/',add_skill,name="add_skill"),
+      path('education/',education,name='education'),
+      path('work_experience/',work_experience,name='work_experience'),
       
       #COMPANY
       path('company_updation/<int:id>/',company_updation,name='company_updation'),
