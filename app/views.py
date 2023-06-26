@@ -195,3 +195,4 @@ def admin_login(request):
         else:
             messages.error(request, 'Invalid username or password')
     return render(request, 'admin/admin_login.html')
+

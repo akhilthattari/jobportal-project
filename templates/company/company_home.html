@@ -26,43 +26,66 @@
       <p>{{data.description}}</p>
     </div>
   </div>
+  
   <hr style="margin-top: 20px; margin-bottom: 20px;">
   <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
     <div style="flex: 1; margin-right: 20px;">
       <h3>Address</h3>
       <p>{{data.company_address}}</p>
     </div>
+
     <div style="flex: 1; margin-right: 20px;">
       <h3>Phone</h3>
       <p>{{data.phone}}</p>
     </div>
+
     <div style="flex: 1;">
       <h3>Email</h3>
       <p>{{data.email}}</p>
     </div>
   </div>
+
   <hr style="margin-top: 20px; margin-bottom: 20px;">
   <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
     <div style="flex: 1; margin-right: 20px;">
       <h3>Location</h3>
       <p>{{data.location}}</p>
     </div>
+
+    {% for details in details %}
+
     <div style="flex: 1; margin-right: 20px;">
       <h3>Founded On</h3>
-      <p>{{data.founded_year}}</p>
+      <p>{{details.year_founded}}</p>
     </div>
     <div style="flex: 1;">
-      <h3>Founder</h3>
-      <p>{{data.company_founder}}</p>
+      <h3>Type</h3>
+      <p>{{details.industry}} <br></p>
     </div>
   </div>
 </div>
     
-     
     <hr>
   
 
+    <hr style="margin-top: 20px; margin-bottom: 20px;">
+    <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+      <div style="flex: 1; margin-right: 20px;">
+        <h3>Head Quarters</h3>
+        <p>{{details.headquarters}}</p>
+      </div>
+      <div style="flex: 1; margin-right: 20px;">
+        <h3>Website</h3>
+        <p>{{details.web_site_url}}</p>
+      </div>
+      <div style="flex: 1;">
+        <h3>Industry</h3>
+        <p>{{details.company_type}}</p>
+      </div>
+    </div>
 
+
+{% endfor %}
 
 
 {% endblock content %}

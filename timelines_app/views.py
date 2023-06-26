@@ -209,11 +209,12 @@ def company_home(request):
         return redirect('compnay_login')
     
     data = CompanyUser.objects.get(user=request.user)
+    details = Company_details.objects.filter(user=request.user)
     context = {
-        'data': data
+        'data': data,
+        'details' : details,
     }
     return render(request,'company/company_home.html',context)
-
 
 
 
@@ -340,7 +341,8 @@ def all_candidate(request):
     
     candidate_datas = CandidateUser.objects.all()
     context = {
-        'candidate_datas':candidate_datas
+        'candidate_datas':candidate_datas,
+        
     }
     return render(request,'company/all_candidate.html',context)
     
@@ -542,3 +544,27 @@ def about_us(request):
     return render(request,'admin/about.html')
 
 
+
+#Company_details
+
+def company_details(request):
+    if not request.user.is_authenticated:
+        return redirect('company_home')
+    
+    if request.method == 'POST':
+        industry = request.POST.get('industry')
+        headquarters = request.POST.get('headquarters')
+        web_site_url = request.POST.get('web_site_url')
+        company_type = request.POST.get('company_type')
+        year_founded = request.POST.get('year_founded')
+        
+        Company_details.objects.create(
+            user = request.user,
+            industry = industry,
+            headquarters = headquarters,
+            web_site_url = web_site_url,
+            company_type = company_type,
+            year_founded = year_founded,
+        )
+        return redirect('company_home')
+    return render(request,'company/company_details.html')

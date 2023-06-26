@@ -152,4 +152,14 @@ class Add_experience(models.Model):
     
     
 
+
+class Company_details(models.Model):
+    user = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
+    industry = models.CharField(max_length=100,null=True)
+    headquarters = models.CharField(max_length=100,null=True)
+    web_site_url = models.CharField(max_length=100,null=True)
+    company_type = models.CharField(max_length=100,null=True)
+    year_founded = models.CharField(max_length=100,null=True)
     
+    
+   

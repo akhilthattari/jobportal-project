@@ -30,6 +30,7 @@ urlpatterns = [
       path('applicants_list/<int:id>/', applicants_list, name='applicants_list'),
       path("comapany/select/<int:id>/<int:id_2>/",select_application,name="select"),
       path("comapany/reject/<int:id>/<int:id_2>/",reject_application,name="reject"),
+      path("company_details/",company_details,name='company_details'),
       
   
       
