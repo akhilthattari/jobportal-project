@@ -32,19 +32,64 @@
 
 <hr>
 
-  <div style="display:flex; align-items:center; margin-bottom: 20px;">
-    {% if candidate_data.profile_photo %}
-      <img src="{{ candidate_data.profile_photo.url }}" height="150" width="150" style="border-radius: 50%; margin-right: 20px;">
-    {% endif %}
-    <div>
-      <h3 style="margin: 0;">{{ candidate_data.first_name }} {{ candidate_data.last_name }}</h3>
-      <h4 style="margin: 0;">{{candidate_data.qualification}}</h4> 
-      <p style="margin: 0;">{{candidate_data.candidate_address}}</p>
-      <p style="margin: 0;">{{ candidate_data.phone }}</p>
-      <p style="margin: 0;">{{ candidate_data.email }}</p>
+ 
+<div style="display:flex; align-items:center; margin-bottom: 20px;">
+  {% if candidate_data.profile_photo %}
+    <img src="{{ candidate_data.profile_photo.url }}" height="150" width="150" style="border-radius: 50%; margin-right: 20px;">
+  {% endif %}
+  <div>
+    <h3 style="font-size: 20px; margin: 0;">{{ candidate_data.first_name }} {{ candidate_data.last_name }}</h3>
+    <h4 style="font-size: 16px; margin: 0;">{{candidate_data.qualification}}</h4> 
+    <p style="font-size: 14px; margin: 0;">{{candidate_data.candidate_address}}</p>
+    <p style="font-size: 14px; margin: 0;">{{ candidate_data.phone }}</p>
+    <p style="font-size: 14px; margin: 0;">{{ candidate_data.email }}</p>
+    
   </div>
 </div>
 
+<hr> 
+{% if skills %}
+  <h3>Skills:</h3>
+  <ul>
+    {% for skill in skills %}
+      <li><h5>{{ skill.skill }}</h5>-{{ skill.description }}</li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No skills found.</p>
+  <p>This person is a fresher.</p>
+{% endif %}
+ <hr>
+
+{% if experiences %}
+<h2>Experiences:</h2>
+
+{% for experience in experiences %}
+<p style="font-size: 14px; margin: 0;">{{experience.company_name}}</p>
+<p style="font-size: 14px; margin: 0;">{{experience.position}}</p>
+<p style="font-size: 14px; margin: 0;">{{ experience.start_date }} - {{ experience.end_date }}</p>
+<hr>
+{% endfor %}
+{% else %}
+<p>No experiences found.</p>
+<p>This person is a fresher.</p>
+{% endif %}
+
+<hr>
+
+{% if educations %}
+<h2>Educations:</h2>
+
+{% for education in educations %}
+<p style="font-size: 14px; margin: 0;">{{education.college_name}}</p>
+<p style="font-size: 14px; margin: 0;">{{education.year}}</p>
+<p style="font-size: 14px; margin: 0;">{{education.subject}}</p> <hr>
+{% endfor %}
+{% else %}
+<p>No education found.</p>
+{% endif %} <hr>
+  </div>
+</div>
 
 
 <hr>        

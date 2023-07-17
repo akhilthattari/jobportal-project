@@ -24,7 +24,7 @@
         
         <div class="nav-link-wrapper"> <a href="{% url 'candidate_updation' data.id %}">Edit Profile</a> </div>
         <div class="nav-link-wrapper"> <a href="{% url 'job_list'  %}">Jobs</a> </div>
-        <div class="nav-link-wrapper"> <a href="{% url 'candidate_settings' %}">Settings</a> </div>
+        <!-- <div class="nav-link-wrapper"> <a href="{% url 'candidate_settings' %}">Settings</a> </div> -->
         <div class="nav-link-wrapper"> <a href="{% url 'candidate_delete' data.id %}">Delete Account</a> </div>
         <div class="nav-link-wrapper"> <a href="{% url 'list_applied' %}">Applied Jobs</a> </div>
         {% if request.user.is_authenticated %}  <div class="nav-link-wrapper"> <a href="{% url 'logout_view' %}">Logout</a> </div>

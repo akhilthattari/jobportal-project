@@ -3,6 +3,7 @@ from app .models import *
 from django.contrib.auth.decorators import login_required
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
+from django.http import HttpResponse
 
 
 
@@ -185,13 +186,17 @@ def job_apply(request,id):
     if not request.user.is_authenticated:
         return redirect('candidate_login')
     
-    user = CandidateUser.objects.get(user=request.user)
+    candidate_user = CandidateUser.objects.get(user=request.user)
     job = JobAdd.objects.get(id=id)
+    
+    if Application.objects.filter(user=candidate_user, job=job).exists():
+         return HttpResponse("Already submitted")
+     
     if request.method == 'POST':
         resume = request.FILES.get('resume')
         username = request.POST.get('username')
         Application.objects.create(
-            user=user,
+            user=candidate_user,
             username = username,
             job = job,
             resume = resume,
@@ -356,8 +361,15 @@ def candidate_list(request,id):
         return redirect('company_login')
     
     candidate_data = CandidateUser.objects.get(id=id)
+    skills = Add_skill.objects.filter(user=candidate_data.user)
+    experiences = Add_experience.objects.filter(user=candidate_data.user)
+    educations = Education.objects.filter(user=candidate_data.user)
+    
     context = {
-        'candidate_data':candidate_data
+        'candidate_data':candidate_data,
+        'skills' : skills,
+        'experiences': experiences,
+        'educations' : educations,
     }
     return render(request,'company/candidate_list.html',context)
 
@@ -568,3 +580,12 @@ def company_details(request):
         )
         return redirect('company_home')
     return render(request,'company/company_details.html')
+
+
+
+# def skill(request,id):
+#     skills = Add_skill.objects.get(id=id)
+#     context = {
+#         'skills':skill
+#     }
+#     return render(request,'company/skills.html',context)
